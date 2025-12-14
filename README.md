@@ -2,13 +2,9 @@
 
 > AI-powered mock data generator with polyglot output, multi-provider BYOK, and a polished, client-first UX.
 
-![Mockator Screenshot](public/assets/screenshot-main.png)
-
-**Badges**
-
-- ![Next.js](https://img.shields.io/badge/Next.js-16.0.10-black)
-- ![TypeScript](https://img.shields.io/badge/TypeScript-%5E5-blue)
-- ![Status](https://img.shields.io/badge/Project-Private-lightgrey)
+![Next.js](https://img.shields.io/badge/Next.js-16.0.10-black)
+![TypeScript](https://img.shields.io/badge/TypeScript-%5E5-blue)
+![Status](https://img.shields.io/badge/Project-Private-lightgrey)
 
 ## Why Mockator?
 
