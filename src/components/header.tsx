@@ -28,7 +28,7 @@ export function Header() {
             className="text-zinc-400 hover:text-white"
           >
             <a
-              href="https://github.com"
+              href="https://github.com/berkinduz/mockator"
               target="_blank"
               rel="noopener noreferrer"
               title="GitHub"
