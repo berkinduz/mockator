@@ -121,6 +121,20 @@ export function ApiKeySettings() {
           </p>
         </div>
 
+        <div className="border-t border-zinc-700 pt-3 mt-3">
+          <p className="text-xs text-zinc-500">
+            Questions or feedback?{" "}
+            <a
+              href="https://berkin.tech/en/about"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-emerald-400 hover:text-emerald-300 underline"
+            >
+              Get in touch
+            </a>
+          </p>
+        </div>
+
         <DialogFooter>
           <Button
             onClick={handleSave}

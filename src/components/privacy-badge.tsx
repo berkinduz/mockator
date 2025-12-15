@@ -37,7 +37,7 @@ export function PrivacyBadge() {
           </div>
           <div className="mt-2 text-xs">
             <a
-              href="https://github.com/yourname/mockator"
+              href="https://github.com/berkinduz/mockator"
               target="_blank"
               rel="noopener noreferrer"
               className="text-emerald-400 hover:text-emerald-300"

@@ -81,7 +81,7 @@ export function InputPanel() {
         }
         className="flex flex-col h-full"
       >
-        <div className="border-b border-zinc-700 px-4">
+        <div className="border-b border-zinc-700 px-4 py-2">
           <TabsList className="grid w-full grid-cols-2 bg-zinc-800">
             <TabsTrigger value="natural-language" className="text-sm">
               Natural Language

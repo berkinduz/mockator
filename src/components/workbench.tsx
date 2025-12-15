@@ -48,22 +48,40 @@ export function Workbench() {
   }, [outputFormat]);
 
   return (
-    <ResizablePanelGroup
-      direction="horizontal"
-      className="flex-1 overflow-hidden"
-    >
-      <ResizablePanel defaultSize={50} minSize={30} maxSize={70}>
-        <InputPanel />
-      </ResizablePanel>
+    <div className="flex-1 overflow-hidden flex flex-col md:flex-row w-full">
+      {/* Desktop: Horizontal split with resizable panels */}
+      <div className="hidden md:flex flex-1 overflow-hidden w-full">
+        <ResizablePanelGroup
+          direction="horizontal"
+          className="flex-1 overflow-hidden w-full"
+        >
+          <ResizablePanel defaultSize={50} minSize={30} maxSize={70}>
+            <InputPanel />
+          </ResizablePanel>
 
-      <ResizableHandle className="bg-zinc-700 hover:bg-blue-500 transition-colors" />
+          <ResizableHandle className="bg-zinc-700 hover:bg-blue-500 transition-colors" />
 
-      <ResizablePanel defaultSize={50} minSize={30} maxSize={70}>
-        <OutputPanel
-          displayContent={displayContent}
-          editorLanguage={editorLanguage}
-        />
-      </ResizablePanel>
-    </ResizablePanelGroup>
+          <ResizablePanel defaultSize={50} minSize={30} maxSize={70}>
+            <OutputPanel
+              displayContent={displayContent}
+              editorLanguage={editorLanguage}
+            />
+          </ResizablePanel>
+        </ResizablePanelGroup>
+      </div>
+
+      {/* Mobile: Vertical stack */}
+      <div className="flex md:hidden flex-col flex-1 overflow-hidden w-full">
+        <div className="flex-1 overflow-y-auto border-b border-zinc-700">
+          <InputPanel />
+        </div>
+        <div className="flex-1 overflow-y-auto">
+          <OutputPanel
+            displayContent={displayContent}
+            editorLanguage={editorLanguage}
+          />
+        </div>
+      </div>
+    </div>
   );
 }
