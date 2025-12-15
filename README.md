@@ -11,7 +11,7 @@
 
 </p>
 
-<img src="public/assets/mockator.png" alt="Mockator Logo" width="820" />
+<img src="public/assets/mockator.png" alt="Mockator Logo" width="420" />
 
 </div>
 
