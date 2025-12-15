@@ -3,6 +3,8 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { useMockator } from "@/providers/mockator-provider";
 import dynamic from "next/dynamic";
 
@@ -56,6 +58,8 @@ export function InputPanel() {
     setNaturalLanguageInput,
     schemaInput,
     setSchemaInput,
+    rowCount,
+    setRowCount,
   } = useMockator();
 
   const maxChars = 1000;
@@ -155,6 +159,31 @@ export function InputPanel() {
           value="schema"
           className="flex-1 overflow-hidden px-4 py-3 flex flex-col gap-3"
         >
+          {/* Row Count Input */}
+          <div className="flex items-center gap-3 bg-zinc-800/50 rounded p-2.5 border border-zinc-700">
+            <Label
+              htmlFor="rowCount"
+              className="text-sm text-zinc-300 whitespace-nowrap"
+            >
+              Row Count:
+            </Label>
+            <Input
+              id="rowCount"
+              type="number"
+              min="1"
+              max="50"
+              value={rowCount}
+              onChange={(e) => {
+                const value = parseInt(e.target.value);
+                if (!isNaN(value) && value >= 1 && value <= 50) {
+                  setRowCount(value);
+                }
+              }}
+              className="w-20 bg-zinc-800 border-zinc-700 text-white text-center"
+            />
+            <span className="text-xs text-zinc-500">(Max: 50)</span>
+          </div>
+
           <div className="flex-1 border border-zinc-700 rounded-md overflow-hidden">
             <MonacoEditor
               height="100%"
@@ -171,12 +200,6 @@ export function InputPanel() {
                 lineNumbers: "on",
                 tabSize: 2,
               }}
-              defaultValue="interface User {
-  id: number;
-  name: string;
-  email: string;
-  createdAt: Date;
-}"
             />
           </div>
 
@@ -189,7 +212,7 @@ export function InputPanel() {
               <li>Define clear TypeScript interfaces for type safety</li>
               <li>Schema mode strictly follows your type definitions</li>
               <li>Supports complex nested types and arrays</li>
-              <li>Maximum 50 rows per request limit applies</li>
+              <li>Specify row count above (1-50 objects per request)</li>
             </ul>
           </div>
         </TabsContent>

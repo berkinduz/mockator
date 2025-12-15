@@ -16,6 +16,8 @@ interface MockatorContextType {
   setNaturalLanguageInput: (text: string) => void;
   schemaInput: string;
   setSchemaInput: (text: string) => void;
+  rowCount: number;
+  setRowCount: (count: number) => void;
 
   // Output
   outputFormat: OutputFormat;
@@ -46,7 +48,13 @@ const MockatorContext = createContext<MockatorContextType | undefined>(
 export function MockatorProvider({ children }: { children: React.ReactNode }) {
   const [inputMode, setInputMode] = useState<InputMode>("natural-language");
   const [naturalLanguageInput, setNaturalLanguageInput] = useState("");
-  const [schemaInput, setSchemaInput] = useState("");
+  const [schemaInput, setSchemaInput] = useState(`interface User {
+  id: number;
+  name: string;
+  email: string;
+  createdAt: Date;
+}`);
+  const [rowCount, setRowCount] = useState(10);
   const [outputFormat, setOutputFormat] = useState<OutputFormat>("json");
   const [output, setOutput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -90,6 +98,7 @@ export function MockatorProvider({ children }: { children: React.ReactNode }) {
         body: JSON.stringify({
           inputMode,
           input,
+          rowCount,
           // Always request JSON; downstream tabs transform client-side
           format: "json",
         }),
@@ -141,6 +150,7 @@ export function MockatorProvider({ children }: { children: React.ReactNode }) {
     inputMode,
     naturalLanguageInput,
     schemaInput,
+    rowCount,
     activeProvider,
     providerKeys,
   ]);
@@ -162,6 +172,8 @@ export function MockatorProvider({ children }: { children: React.ReactNode }) {
         setNaturalLanguageInput,
         schemaInput,
         setSchemaInput,
+        rowCount,
+        setRowCount,
         outputFormat,
         setOutputFormat,
         output,

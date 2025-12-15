@@ -11,6 +11,7 @@ interface GenerateRequest {
   inputMode: "natural-language" | "schema";
   input: string;
   format: "json" | "sql" | "csv";
+  rowCount?: number;
 }
 
 export async function POST(request: NextRequest) {
@@ -68,7 +69,7 @@ export async function POST(request: NextRequest) {
     })();
 
     const body: GenerateRequest = await request.json();
-    const { inputMode, input, format } = body;
+    const { inputMode, input, format, rowCount = 10 } = body;
 
     if (!input) {
       return new Response(JSON.stringify({ error: "Input is required" }), {
@@ -84,6 +85,9 @@ export async function POST(request: NextRequest) {
         { status: 400, headers: { "Content-Type": "application/json" } }
       );
     }
+
+    // Validate and cap rowCount
+    const maxRows = Math.min(Math.max(1, rowCount), 50);
 
     // Data consistency rule for all formats
     const consistencyRule =
@@ -203,7 +207,6 @@ Let me help you...`;
     }
 
     // Build the user prompt - with strict limits
-    const maxRows = 50;
     let userPrompt = "";
 
     if (inputMode === "schema") {
